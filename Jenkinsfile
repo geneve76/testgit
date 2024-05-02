@@ -1,20 +1,31 @@
-node{
-        stage('build'){
-            
-                echo 'Building Docker Image'
-                sh 'docker build -t mytestapp:1.0 .'
-            
-
-        }
-
-        stage('publish'){
-            
-                echo 'Publishing to docker hub'
-                sh 'docker push mytestapp:1.0'
-            
-
-        }
-   
-     
-    
+pipeline {
+  agent none
+  stages {
+    // stage('Maven Install') {
+    //   agent {
+    //     docker {
+    //       image 'maven:3.5.0'
+    //     }
+    //   }
+    //   steps {
+    //     sh 'mvn clean install'
+    //   }
+    // }
+    stage('Docker Build') {
+      agent any
+      steps {
+        sh 'docker build -t geneve76/hello:latest .'
+      }
+    }
+    stage('Docker Push') {
+      agent any
+      steps {
+        echo "push"
+        // withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        //   sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+        //   sh 'docker push shanem/spring-petclinic:latest'
+        // }
+      }
+    }
+  }
 }

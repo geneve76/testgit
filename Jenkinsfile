@@ -15,7 +15,7 @@ pipeline {
       agent any
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-           sh '/opt/homebrew/bin/docker -u $USERNAME -p $PASSWORD login'
+           sh '/opt/homebrew/bin/docker login -u $USERNAME -p $PASSWORD'
         sh '/opt/homebrew/bin/docker build -t geneve76/hello:latest .'
         }
       }

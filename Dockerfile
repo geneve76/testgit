@@ -1,4 +1,4 @@
-FROM node:latest
+FROM registry.hub.docker.com/node:latest
 WORKDIR /app
 COPY * ./
 RUN npm install

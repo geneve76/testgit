@@ -14,7 +14,10 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
+        withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+           sh '/opt/homebrew/bin/docker -u $USERNAME -p $PASSWORD login'
         sh '/opt/homebrew/bin/docker build -t geneve76/hello:latest .'
+        }
       }
     }
     stage('Docker Push') {

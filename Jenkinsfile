@@ -14,7 +14,7 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh 'docker build -t geneve76/hello:latest .'
+        sh '/opt/homebrew/bin/docker build -t geneve76/hello:latest .'
       }
     }
     stage('Docker Push') {

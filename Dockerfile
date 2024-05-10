@@ -1,6 +1,6 @@
-FROM registry.hub.docker.com/node:latest
+FROM node:latest
 WORKDIR /app
-COPY * ./
+COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 3000

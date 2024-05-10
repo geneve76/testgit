@@ -1,12 +1,17 @@
-{
-  "name": "nodejstest",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+pipeline {
+  agent any
+  
+  stages {
+      stage('Docker Build') {
+          steps {
+              script {
+                  // Log in to Docker registry
+                  sh '/opt/homebrew/bin/docker login -u geneve76 -p Abdul@123'
+                  
+                  // Build Docker image
+                  sh '/opt/homebrew/bin/docker build -t geneve76/hello:latest .'
+              }
+          }
+      }
+  }
 }

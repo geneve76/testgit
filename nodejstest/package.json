@@ -6,7 +6,7 @@ pipeline {
           steps {
               script {
                   // Log in to Docker registry
-                  sh '/opt/homebrew/bin/docker login -u geneve76 -p Abdul@123'
+                  sh '/opt/homebrew/bin/docker login -u geneve76 -p ****'
                   
                   // Build Docker image
                   sh '/opt/homebrew/bin/docker build -t geneve76/hello:latest .'
